@@ -1,13 +1,18 @@
 #!/bin/sh
-
-# Copy image data from repository
+ 
+# Resize and copy image data from repository
 GB_DATA_ROOT=~/ML-Study/_data/GB_images/
+TEMP_DIR=_temp
 
-mkdir -p input/normal
-find ${GB_DATA_ROOT}/normal -path "*/img-squared/*.png" | xargs -i cp {} input/normal
-
-mkdir -p input/defects
-find ${GB_DATA_ROOT}/defects -path "*/img-squared/*.png" | xargs -i cp {} input/defects
+for CLASS in normal defects; do
+    mkdir -p ${TEMP_DIR}/${CLASS}
+    for EACH in `find ${GB_DATA_ROOT}/${CLASS} -path "*/img-squared/*.png"`; do
+        echo ${EACH}
+        convert ${EACH} -resize 128x128\> ${TEMP_DIR}/${CLASS}/`basename ${EACH}`
+    done
+done
 
 # Split dataset for train/test
-split_folders input/ --ratio .8 .2
+split_folders ${TEMP_DIR} --output . --ratio .8 .2
+
+rm -r ${TEMP_DIR}
