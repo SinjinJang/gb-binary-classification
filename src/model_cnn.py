@@ -25,12 +25,12 @@ train_datagen = ImageDataGenerator(rescale=1. / 255,
                                    shear_range=0.2,
                                    zoom_range=0.2,
                                    horizontal_flip=True)
-train_set = train_datagen.flow_from_directory('../dataset/output/train',
+train_set = train_datagen.flow_from_directory('../dataset/train',
                                               target_size=(128, 128),
                                               batch_size=128,
                                               class_mode='binary')
 validation_datagen = ImageDataGenerator(rescale=1. / 255)
-validation_set = validation_datagen.flow_from_directory('../dataset/output/val',
+validation_set = validation_datagen.flow_from_directory('../dataset/val',
                                                         target_size=(128, 128),
                                                         batch_size=128,
                                                         class_mode='binary')
