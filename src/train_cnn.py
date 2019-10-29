@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+from pathlib import Path
+
 from keras.models import Sequential
 from keras.layers import Conv2D
 from keras.layers import MaxPooling2D
@@ -41,9 +43,7 @@ model.fit_generator(train_set,
                     validation_steps=2000)
 
 # Save model & weights
-model_json = model.to_json()
-with open('./model_cnn.json', 'w') as json_file:
-    json_file.write(model_json)
-
+Path('./model_cnn.json').write_text(model.to_json())
 model.save_weights('./model_cnn.h5')
+
 print('saved model, ready to go!')
