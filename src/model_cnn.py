@@ -42,8 +42,8 @@ model.fit_generator(train_set,
 
 # Save model & weights
 model_json = model.to_json()
-with open('./model-cnn.json', 'w') as json_file:
+with open('./model_cnn.json', 'w') as json_file:
     json_file.write(model_json)
 
-model.save_weights('./model-cnn.h5')
+model.save_weights('./model_cnn.h5')
 print('saved model, ready to go!')
