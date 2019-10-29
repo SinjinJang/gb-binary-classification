@@ -43,7 +43,8 @@ resize_and_copy('normal')
 resize_and_copy('defects')
 
 # Split dataset for train/validation
-split_folders.ratio(str(DIR_TEMP), output=str(DIR_OUT), seed=1337, ratio=(.8, .2))
+split_folders.ratio(str(DIR_TEMP), output=str(DIR_OUT),
+                    seed=1337, ratio=(.8, .2))
 
 # Delete temporary directory
 shutil.rmtree(DIR_TEMP)
