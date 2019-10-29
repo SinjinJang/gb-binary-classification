@@ -1,0 +1,6 @@
+numpy
+scikit-learn
+tensorflow
+keras
+matplotlib
+split_folders
