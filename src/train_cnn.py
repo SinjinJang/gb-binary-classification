@@ -37,10 +37,10 @@ validation_set = validation_datagen.flow_from_directory('../dataset/val',
                                                         batch_size=128,
                                                         class_mode='binary')
 model.fit_generator(train_set,
-                    steps_per_epoch=8000,
+                    steps_per_epoch=1000,
                     epochs=5,
                     validation_data=validation_set,
-                    validation_steps=2000)
+                    validation_steps=1000)
 
 # Save model & weights
 Path('./model_cnn.json').write_text(model.to_json())
