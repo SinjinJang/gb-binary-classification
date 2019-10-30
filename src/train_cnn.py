@@ -31,12 +31,12 @@ train_datagen = ImageDataGenerator(rescale=1. / 255,
                                    horizontal_flip=True)
 train_set = train_datagen.flow_from_directory('../dataset/train',
                                               target_size=(128, 128),
-                                              batch_size=128,
+                                              batch_size=64,
                                               class_mode='binary')
 validation_datagen = ImageDataGenerator(rescale=1. / 255)
 validation_set = validation_datagen.flow_from_directory('../dataset/val',
                                                         target_size=(128, 128),
-                                                        batch_size=128,
+                                                        batch_size=64,
                                                         class_mode='binary')
 model.fit_generator(train_set,
                     steps_per_epoch=1000,
