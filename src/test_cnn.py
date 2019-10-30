@@ -1,6 +1,13 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+""" Evaluate pure CNN model
+
+{'defects': 0, 'normal': 1}
+loss: 11.91
+acc: 96.46%
+"""
+
 from pathlib import Path
 
 from keras.models import model_from_json

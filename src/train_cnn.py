@@ -1,6 +1,20 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+""" Train pure CNN model
+
+Epoch 1/5
+1000/1000 [==============================] - 252s 252ms/step - loss: 0.1905 - acc: 0.9198 - val_loss: 0.1045 - val_acc: 0.9694
+Epoch 2/5
+1000/1000 [==============================] - 246s 246ms/step - loss: 0.0450 - acc: 0.9831 - val_loss: 0.1400 - val_acc: 0.9673
+Epoch 3/5
+1000/1000 [==============================] - 240s 240ms/step - loss: 0.0193 - acc: 0.9933 - val_loss: 0.1848 - val_acc: 0.9612
+Epoch 4/5
+1000/1000 [==============================] - 237s 237ms/step - loss: 0.0139 - acc: 0.9952 - val_loss: 0.1759 - val_acc: 0.9653
+Epoch 5/5
+1000/1000 [==============================] - 240s 240ms/step - loss: 0.0119 - acc: 0.9956 - val_loss: 0.1511 - val_acc: 0.9673
+"""
+
 from pathlib import Path
 
 from keras.models import Sequential
