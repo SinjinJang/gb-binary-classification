@@ -11,6 +11,8 @@ from keras.layers import Dense
 from keras.preprocessing.image import ImageDataGenerator
 
 
+MODEL_FILE_NAME = 'model_cnn'
+
 # CNN model
 model = Sequential()
 model.add(Conv2D(32, (3, 3), input_shape=(128, 128, 3), activation='relu'))
@@ -43,7 +45,7 @@ model.fit_generator(train_set,
                     validation_steps=1000)
 
 # Save model & weights
-Path('./model_cnn.json').write_text(model.to_json())
-model.save_weights('./model_cnn.h5')
+Path(f'{MODEL_FILE_NAME}.json').write_text(model.to_json())
+model.save_weights(f'{MODEL_FILE_NAME}.h5')
 
 print('saved model, ready to go!')

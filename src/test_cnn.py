@@ -7,8 +7,10 @@ from keras.models import model_from_json
 from keras.preprocessing.image import ImageDataGenerator
 
 
-model = model_from_json(Path('./model_cnn.json').read_text())
-model.load_weights('./model_cnn.h5')
+MODEL_FILE_NAME = 'model_cnn'
+
+model = model_from_json(Path(f'{MODEL_FILE_NAME}.json').read_text())
+model.load_weights(f'{MODEL_FILE_NAME}.h5')
 print("Loaded model from disk")
 
 model.compile(loss="binary_crossentropy",
