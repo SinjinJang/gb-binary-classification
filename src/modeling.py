@@ -100,6 +100,22 @@ def model_2d_cnn():
     return m
 
 
+def model_3d_cnn():
+    ''' 3 depth CNN '''
+    m = Sequential()
+    m.add(Conv2D(32, (3, 3), input_shape=IMG_SHAPE, activation='relu'))
+    m.add(MaxPooling2D(pool_size=(2, 2)))
+    m.add(Conv2D(32, (3, 3), activation='relu'))
+    m.add(MaxPooling2D(pool_size=(2, 2)))
+    m.add(Conv2D(32, (3, 3), activation='relu'))
+    m.add(MaxPooling2D(pool_size=(2, 2)))
+    m.add(Flatten())
+    m.add(Dense(units=128, activation='relu'))
+    m.add(Dense(units=1, activation='sigmoid'))
+
+    return m
+
+
 def model_lenet5():
     """ LeNet-5 """
     m = Sequential()
@@ -124,6 +140,7 @@ def model_inception_v3():
 
 def initmodel():
     MODEL_DICT['2d_cnn'] = model_2d_cnn
+    MODEL_DICT['3d_cnn'] = model_3d_cnn
     MODEL_DICT['lenet-5'] = model_lenet5
     MODEL_DICT['inception-v3'] = model_inception_v3
 
@@ -131,7 +148,7 @@ def initmodel():
 def main():
     train_set, val_set, test_set = load_dataset()
 
-    k = 'lenet-5'
+    k = '3d_cnn'
     m = MODEL_DICT[k]()
     m.summary()
 
