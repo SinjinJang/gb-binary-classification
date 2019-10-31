@@ -37,12 +37,11 @@ def load_dataset():
                                                   batch_size=64,
                                                   class_mode='binary')
 
-    validation_datagen = ImageDataGenerator(rescale=1. / 255)
-    validation_set = validation_datagen.flow_from_directory('../dataset/val',
-                                                            target_size=(
-                                                                128, 128),
-                                                            batch_size=64,
-                                                            class_mode='binary')
+    val_datagen = ImageDataGenerator(rescale=1. / 255)
+    val_set = val_datagen.flow_from_directory('../dataset/val',
+                                              target_size=(128, 128),
+                                              batch_size=64,
+                                              class_mode='binary')
 
     test_datagen = ImageDataGenerator(rescale=1. / 255)
     test_set = test_datagen.flow_from_directory('../dataset/test',
@@ -50,17 +49,17 @@ def load_dataset():
                                                 batch_size=64,
                                                 class_mode='binary')
 
-    return train_set, validation_set, test_set
+    return train_set, val_set, test_set
 
 
-def train_model(model: Sequential, train_set, validation_set):
+def train_model(model: Sequential, train_set, val_set):
     """ Train model with dataset and hyperparameter """
     model.compile(optimizer='adam', loss='binary_crossentropy',
                   metrics=['accuracy'])
     ret = model.fit_generator(train_set,
                               steps_per_epoch=500,
                               epochs=10,
-                              validation_data=validation_set,
+                              validation_data=val_set,
                               validation_steps=100)
 
     plt.plot(ret.history['acc'])
