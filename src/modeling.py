@@ -3,6 +3,7 @@
 
 """ Train and evaluate CNN models """
 
+import datetime
 from pathlib import Path
 
 from keras.models import Sequential
@@ -76,6 +77,15 @@ def evaluate_model(model, test_set):
     print(f'{model.metrics_names[1]}: {scores[1]*100:.2f}%')
 
 
+def save_model(model, key):
+    now = datetime.datetime.today().strftime('%y%m%d-%H%M%S')
+    model_path = Path('../model') / key / now
+    model_path.mkdir(parents=True, exist_ok=True)
+
+    Path(model_path / 'model.json').write_text(model.to_json())
+    model.save_weights(model_path / 'weights.h5')
+
+
 def model_2d_cnn():
     ''' 2 depth CNN '''
     m = Sequential()
@@ -121,14 +131,12 @@ def initmodel():
 def main():
     train_set, val_set, test_set = load_dataset()
 
-    k = 'inception-v3'
+    k = 'lenet-5'
     m = MODEL_DICT[k]()
     m.summary()
 
     train_model(m, train_set, val_set)
-    Path(f'{k}.json').write_text(m.to_json())
-    m.save_weights(f'{k}.h5')
-
+    save_model(m, k)
     evaluate_model(m, test_set)
 
 
