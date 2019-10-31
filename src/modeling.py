@@ -3,6 +3,7 @@
 
 """ Train and evaluate CNN models """
 
+from argparse import ArgumentParser
 import datetime
 from pathlib import Path
 
@@ -138,25 +139,32 @@ def model_inception_v3():
     return InceptionV3(input_tensor=input_tensor, weights=None, include_top=True, classes=1)
 
 
-def initmodel():
+def parse_argument():
+    parser = ArgumentParser(description='Command line argument description')
+    parser.add_argument('-m', '--model', type=str,
+                        required=True, help='specify model name')
+    return parser.parse_args()
+
+
+def init_model():
     MODEL_DICT['2d_cnn'] = model_2d_cnn
     MODEL_DICT['3d_cnn'] = model_3d_cnn
     MODEL_DICT['lenet-5'] = model_lenet5
     MODEL_DICT['inception-v3'] = model_inception_v3
 
 
-def main():
+def do_main(model_name):
     train_set, val_set, test_set = load_dataset()
 
-    k = '3d_cnn'
-    m = MODEL_DICT[k]()
-    m.summary()
+    model = MODEL_DICT[model_name]()
+    model.summary()
 
-    train_model(m, train_set, val_set)
-    save_model(m, k)
-    evaluate_model(m, test_set)
+    train_model(model, train_set, val_set)
+    save_model(model, model_name)
+    evaluate_model(model, test_set)
 
 
 if __name__ == '__main__':
-    initmodel()
-    main()
+    args = parse_argument()
+    init_model()
+    do_main(args.model)
