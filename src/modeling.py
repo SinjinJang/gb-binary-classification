@@ -141,7 +141,7 @@ def model_inception_v3():
 
 def parse_argument():
     parser = ArgumentParser(description='Command line argument description')
-    parser.add_argument('-m', '--model', type=str,
+    parser.add_argument('-m', '--model-name', type=str,
                         required=True, help='specify model name')
     return parser.parse_args()
 
@@ -167,4 +167,4 @@ def do_main(model_name):
 if __name__ == '__main__':
     args = parse_argument()
     init_model()
-    do_main(args.model)
+    do_main(args.model_name)
