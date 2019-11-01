@@ -16,7 +16,7 @@ IMG_SHAPE = (IMG_SIDE, IMG_SIDE, 3)
 
 
 def load_dataset(model: BaseCNN):
-    print('\n<<< Loading dataset >>>')
+    print('\n<<< Dataset >>>')
 
     train_datagen = ImageDataGenerator(rescale=1. / 255,
                                        shear_range=0.2,
