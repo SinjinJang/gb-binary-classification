@@ -52,10 +52,9 @@ class BaseCNN:
 
     def evaluate(self):
         ''' Evaluate model '''
-        return (self._model.metrics_names,
-                self._model.evaluate_generator(self._test_set,
-                                               steps=5)
-                )
+        scores = self._model.evaluate_generator(self._test_set,
+                                                steps=5)
+        return self._model.metrics_names, scores
 
     def save(self):
         ''' Save model '''
