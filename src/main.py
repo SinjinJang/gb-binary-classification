@@ -49,7 +49,7 @@ def do_train(model: BaseCNN):
     plt.plot(ret.history['acc'])
     plt.plot(ret.history['val_acc'])
     plt.legend(['training', 'validation'], loc='upper left')
-    plt.show()
+    plt.show(block=False)
 
     model.save()
 
@@ -76,3 +76,5 @@ if __name__ == '__main__':
     load_dataset(m)
     do_train(m)
     do_evaluate(m)
+
+    _ = input("Press [enter] to exit.")
