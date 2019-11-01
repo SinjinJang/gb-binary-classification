@@ -28,19 +28,19 @@ def load_dataset(model: BaseCNN):
                                        horizontal_flip=True)
     train_set = train_datagen.flow_from_directory('../dataset/train',
                                                   target_size=IMG_TARGET,
-                                                  batch_size=64,
+                                                  batch_size=128,
                                                   class_mode='binary')
 
     val_datagen = ImageDataGenerator(rescale=1. / 255)
     val_set = val_datagen.flow_from_directory('../dataset/val',
                                               target_size=IMG_TARGET,
-                                              batch_size=64,
+                                              batch_size=128,
                                               class_mode='binary')
 
     test_datagen = ImageDataGenerator(rescale=1. / 255)
     test_set = test_datagen.flow_from_directory('../dataset/test',
                                                 target_size=IMG_TARGET,
-                                                batch_size=64,
+                                                batch_size=128,
                                                 class_mode='binary')
 
     model.feed_data(train_set, val_set, test_set)

@@ -45,7 +45,7 @@ class BaseCNN:
         self._model.compile(optimizer='adam', loss='binary_crossentropy',
                             metrics=['accuracy'])
         return self._model.fit_generator(self._train_set,
-                                         steps_per_epoch=500,
+                                         steps_per_epoch=100,
                                          epochs=10,
                                          validation_data=self._val_set,
                                          validation_steps=100)
