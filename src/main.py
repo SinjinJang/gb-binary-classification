@@ -13,6 +13,7 @@ from ModelCNN import TwoDepthCNN, BaseCNN
 
 IMG_SIDE = 128
 IMG_SHAPE = (IMG_SIDE, IMG_SIDE, 3)
+IMG_TARGET = (IMG_SIDE, IMG_SIDE)
 
 
 def load_dataset(model: BaseCNN):
@@ -23,19 +24,19 @@ def load_dataset(model: BaseCNN):
                                        zoom_range=0.2,
                                        horizontal_flip=True)
     train_set = train_datagen.flow_from_directory('../dataset/train',
-                                                  target_size=(128, 128),
+                                                  target_size=IMG_TARGET,
                                                   batch_size=64,
                                                   class_mode='binary')
 
     val_datagen = ImageDataGenerator(rescale=1. / 255)
     val_set = val_datagen.flow_from_directory('../dataset/val',
-                                              target_size=(128, 128),
+                                              target_size=IMG_TARGET,
                                               batch_size=64,
                                               class_mode='binary')
 
     test_datagen = ImageDataGenerator(rescale=1. / 255)
     test_set = test_datagen.flow_from_directory('../dataset/test',
-                                                target_size=(128, 128),
+                                                target_size=IMG_TARGET,
                                                 batch_size=64,
                                                 class_mode='binary')
 
