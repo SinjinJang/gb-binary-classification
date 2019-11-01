@@ -5,11 +5,14 @@
 
 from argparse import ArgumentParser
 
+import numpy as np
 from matplotlib import pyplot as plt
 from keras.preprocessing.image import ImageDataGenerator
 
 from ModelCNN import TwoDepthCNN, BaseCNN
 
+
+np.random.seed(777)
 
 IMG_SIDE = 128
 IMG_SHAPE = (IMG_SIDE, IMG_SIDE, 3)
