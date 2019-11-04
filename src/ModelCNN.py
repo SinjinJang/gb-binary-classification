@@ -77,7 +77,7 @@ class TwoDepthCNN(BaseCNN):
 
     def __init__(self, input_shape):
         self.__input_shape = input_shape
-        super().__init__()
+        super(TwoDepthCNN, self).__init__()
 
     def make_model(self) -> Sequential:
         m = Sequential()
